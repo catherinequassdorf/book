@@ -1,0 +1,277 @@
+/* c=content, t=title, n=nav, l=list */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+p {
+    font-family: 'Avenir Next';
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Poppins';
+}
+
+.active {
+    color: red;
+    text-decoration: underline !important;
+}
+
+body {
+    margin: 0 auto;
+}
+
+nav {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #000;
+    padding-top: 22px;
+    margin-left: -44px;
+}
+
+nav a {
+    padding-right: 44px;
+    color: #000;
+    text-decoration: none;
+    /* hur får jag det att röra sig responsivt*? */
+}
+
+nav a:hover {
+    font-style: italic;
+}
+
+  /* FOOTER */
+
+  footer {
+    margin-top: 110px;
+    text-align: center;
+}
+
+/* INDEX */
+
+.n-index {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #000;
+}
+
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 22px;
+  }
+  
+.split a {
+    padding-right: 44px;
+    text-decoration: none;
+}
+
+.split a:hover {
+    font-style: italic;
+}
+
+.split .active {
+    color: red;
+}
+  
+  .left {
+    left: 0;
+    background-color: #FFF;
+  }
+
+  .left a {
+      color: #000;
+  }
+
+  .left h2 {
+      font-size: 44px;
+      text-align: left;
+  }
+
+  .left p {
+      text-align: left;
+      margin-left: 66px;
+  }
+
+  .left .n-index {
+      text-align: right;
+      margin-right: -18px;
+  }
+  
+  .right {
+    right: 0;
+    background-color: #E6D8B4;
+  }
+
+  .right a {
+      color: #fff;
+  }
+
+  .right .n-index {
+      margin-left: -18px;
+  }
+  
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .centered img {
+    width: 150px;
+    border-radius: 50%;
+  }
+
+
+  /* ABOUT US */
+
+.c-container {
+    text-align: center;
+    margin-top: 88px;
+    overflow: hidden;
+}
+
+.c-left {
+    float: left;
+    width: 50%; 
+}
+
+.c-left p {
+    margin-left: 44px;
+    margin-right: 22px;
+    text-align: left !important;
+}
+
+.c-right {
+    float: left;
+    width: 50%;
+}
+
+.c-image-bathtub { /*parent*/
+    position: relative;
+    margin-right: 44px;
+    margin-left: 22px;
+}
+
+.c-image-bathtub img {
+    width: 80%;
+    padding-right: 22px;
+}
+
+.t-big { /*child*/
+    position: absolute;
+    top: -50px;
+    left: 15px;
+}
+/* this is not responsive at all - FIX! */
+
+.t-big h2 {
+    font-size: 132px;
+}
+
+.c-column {
+    float: left;
+    width: 25%;
+    margin-top: 110px;
+  }
+
+  /* CONTACT */
+
+
+.t-big2 h2 {
+    font-size: 132px;
+}
+
+.c-column2 {
+    float: left;
+    width: 33.3%;
+  }
+
+input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    font-family: "Avenir Next";
+    padding: 12px; /* Some padding */  
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+  
+  input[type=submit] {
+    background-color: #E6D8B4;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Avenir Next";
+  }
+  
+  .c-column2 label {
+    font-family: "Avenir Next";
+  }
+
+
+  /* BROWSE BOOKS */
+
+.t-big3 h2 {
+    font-size: 132px;
+    text-align: right;
+    margin-right: 88px;
+    margin-top: -44px;
+}
+
+.l-browse {
+    list-style-type: none;
+    margin-left: 0px;
+    padding-left: 0px;
+    display: inline-block;
+    margin-bottom: 44px;
+    }
+    
+.l-browse img {
+    float: left;
+}
+
+
+.button-wrapper {
+    display: block;
+    text-align: center;
+  }
+
+  /* MY BOOKS */
+
+/* DATABASE STUFF */
+
+.l-browse {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    line-height: 18px;
+}
+
+.c-search {
+    font-family: "Avenir Next";
+    padding-right: 132px;
+}
+
+button {
+    position: relative;
+    border: none;
+    border-radius: 2em;
+    background-color: red;
+    color: white;
+    display: inline-block;
+    font-size: 0,5em;
+    padding: 1em 1em;
+    width: auto;
+    font-family: "Avenir Next";
+    margin-top: -11px;
+}
