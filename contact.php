@@ -14,7 +14,7 @@
     <div class="c-column2">
         <div class="c-row">
             <div class="t-big2">
-                <h2>Contttt</h2>
+                <h2>Cont</h2>
             </div>
         </div>
     </div>
