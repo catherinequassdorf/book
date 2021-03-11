@@ -209,3 +209,187 @@ session_start(); //website remembers session information
 </html>
 
 <!--- NÄSTA KOD --->
+
+
+<?php
+require_once('config.php');
+$db=$conn; // Enter your Connection variable;
+$tableName='gallery_img'; // Enter your table Name;
+// upload image on submit
+if(isset($_POST['submit'])){ 
+    echo upload_image($tableName); 
+}
+  function upload_image($tableName){
+   
+    $uploadTo = "uploads/"; 
+    $allowedImageType = array('jpg','png','jpeg','gif');
+    $imageName = array_filter($_FILES['image_gallery']['name']);
+    $imageTempName=$_FILES["image_gallery"]["tmp_name"];
+    $tableName= trim($tableName);
+if(empty($imageName)){ 
+   $error="Please Select Images..";
+   return $error;
+}else if(empty($tableName)){
+   $error="You must declare table name";
+   return $error;
+}else{
+   $error=$savedImageBasename='';
+   foreach($imageName as $index=>$file){
+         
+    $imageBasename = basename($imageName[$index]);
+    $imagePath = $uploadTo.$imageBasename; 
+    $imageType = pathinfo($imagePath, PATHINFO_EXTENSION); 
+ if(in_array($imageType, $allowedImageType)){ 
+    // Upload image to server 
+    if(move_uploaded_file($imageTempName[$index],$imagePath)){ 
+        
+    // Store image into database table
+     $savedImageBasename .= "('".$imageBasename."'),";     
+    }else{ 
+     $error = 'File Not uploaded ! try again';
+  } 
+}else{
+    $error .= $_FILES['file_name']['name'][$index].' - file extensions not allowed<br> ';
+ }
+ }
+    save_image($savedImageBasename, $tableName);
+}
+    return $error;
+}
+    // File upload configuration 
+ function save_image($savedImageBasename, $tableName){
+      global $db;
+      if(!empty($savedImageBasename))
+      {
+      $value = trim($savedImageBasename, ',');
+      $saveImage="INSERT INTO ".$tableName." (image_name) VALUES".$value;
+      $exec= $db->query($saveImage);
+      if($exec){
+        echo "Images are uploaded successfully";  
+       }else{
+        echo  "Error: " .  $saveImage . "<br>" . $db->error;
+       }
+      }
+    }     
+    
+?>
+
+<!--- NÄSTA KOD --->
+
+<?php
+require_once('config.php');
+$db = mysqli_connect('localhost', 'root', 'root', 'db_books') or die('Error connecting'); // Enter your Connection variable;
+$tableName='gallery_img'; // Enter your table Name;
+
+// upload image on submit
+if(isset($_POST['submit'])){ 
+    echo upload_image($tableName); 
+}
+  function upload_image($tableName){
+   
+    $uploadTo = "uploads/"; 
+    $allowedImageType = array('jpg','png','jpeg','gif');
+    $imageName = array_filter($_FILES['gallery_img']['id']);
+    $imageTempName=$_FILES["gallery_img"]["tmp_title"];
+    $tableName= trim($tableName);
+
+if(empty($imageName)){ 
+   $error="Please Select Images..";
+   return $error;
+}else if(empty($tableName)){
+   $error="You must declare table name";
+   return $error;
+}else{
+   $error=$savedImageBasename='';
+   foreach($imageName as $index=>$file){
+         
+    $imageBasename = basename($imageName[$index]);
+    $imagePath = $uploadTo.$imageBasename; 
+    $imageType = pathinfo($imagePath, PATHINFO_EXTENSION); 
+ if(in_array($imageType, $allowedImageType)){ 
+    // Upload image to server 
+    if(move_uploaded_file($imageTempName[$index],$imagePath)){ 
+        
+    // Store image into database table
+     $savedImageBasename .= "('".$imageBasename."'),";     
+    }else{ 
+     $error = 'File Not uploaded ! try again';
+  } 
+}else{
+    $error .= $_FILES['file_name']['name'][$index].' - file extensions not allowed<br> ';
+ }
+ }
+    save_image($savedImageBasename, $tableName);
+}
+    return $error;
+}
+    // File upload configuration 
+ function save_image($savedImageBasename, $tableName){
+      global $db;
+      if(!empty($savedImageBasename))
+      {
+      $value = trim($savedImageBasename, ',');
+      $saveImage="INSERT INTO ".$tableName." (image_name) VALUES".$value;
+      $exec= $db->query($saveImage);
+      if($exec){
+        echo "Images are uploaded successfully";  
+       }else{
+        echo  "Error: " .  $saveImage . "<br>" . $db->error;
+       }
+      }
+    }     
+    
+?>
+
+<!--- NÄSTA KOD --->
+
+
+<?php
+if(isset($_POST['xss'])){
+  $xss = $_POST['xss'];
+  $xss = htmlspecialchars($xss, ENT_QUOTES, 'UTF-8');
+  $xss = strip_tags($xss);
+  echo "The XSS string is : $xss";
+}
+
+?>
+
+
+<!--- NÄSTA KOD --->
+
+<?php $query = "SELECT * FROM upload";
+  $data = mysqli_query($db, $query);
+
+  while ($image = mysqli_fetch_array($data)) { //array that stores the stuff from the image table
+
+      echo '<img class="galleryimage" width="240px" src=uploads/' . $file['filename'] . '>';
+  }
+ ?>  
+
+<!--- NÄSTA KOD --->
+
+<?php
+$files = glob("uploads/*.*");
+
+for ($i=0; $i<count($files); $i++) {
+    $image = $files[$i];    
+
+    echo '<img src="' . $image . '" style=height:250px; />'."" ;
+
+}
+?>
+
+<!--- NÄSTA KOD --->
+
+
+<?php
+        $db = mysqli_connect('localhost', 'root', 'root', 'db_books') or die('Error connecting');
+       
+        $query = "SELECT * FROM upload";
+        $data = mysqli_query($db, $query);
+      
+        while ($image = mysqli_fetch_array($data)) { //array that stores the stuff from the image table
+      
+            echo '<img class="galleryimage" width="240px" src=uploads/' . $file . '>';
+        }
+       ?>      
