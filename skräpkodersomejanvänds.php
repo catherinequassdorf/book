@@ -393,3 +393,210 @@ for ($i=0; $i<count($files); $i++) {
             echo '<img class="galleryimage" width="240px" src=uploads/' . $file . '>';
         }
        ?>      
+
+<!--- NÄSTA KOD --->
+<?php
+
+if(!empty($_GET['breed'])){
+    $breed_url = 'https://catfact.ninja/breeds?limit=1' . $_GET ['breed'];
+
+    $breed_json = file_get_contents($breed_url);
+    $breed_array = json_decode($breed_json, true);
+
+    $breed_array['data'][0]['breed'];
+}
+
+?>
+
+<!--- NÄSTA KOD --->
+<?php
+
+if(isset($_GET['breed'])){
+    
+    // https://catfact.ninja/breeds?limit=1
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://catfact.ninja/breeds?limit=1" . $breed);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, HTTPGET, 1);
+
+    $breedJSON = curl_exec($ch);
+    if($breedJSON == false) {
+        die("cURL Error: " . curl_error($ch));
+    }
+
+    $breedObj = json_decode($breedJSON, true);
+    return $breedObj['breed'];
+
+    echo "<tr>";
+echo "<td> $breed </td>";
+
+}
+
+?>
+
+<!--- NÄSTA KOD --->
+
+<?php
+
+function callAPI($method, $url, $data){
+    $curl = curl_init();
+    switch ($method){
+       case "POST":
+          curl_setopt($curl, CURLOPT_POST, 1);
+          if ($data)
+             curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+          break;
+       case "GET":
+          curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "GET");
+          if ($data)
+             curl_setopt($curl, CURLOPT_POSTFIELDS, $data);			 					
+          break;
+       default:
+          if ($data)
+             $url = sprintf("https://catfact.ninja/breeds?limit=10", $url, http_build_query($data));
+    }
+    // EXECUTE:
+    $result = curl_exec($curl);
+    if(!$result){die("Connection Failure");}
+    curl_close($curl);
+    return $result;
+ }
+
+?>
+
+<!--- NÄSTA KOD --->
+
+
+<?php
+
+$cURLConnection = curl_init();
+
+curl_setopt($cURLconnection, CURLOPT_URL, 'https://catfact.ninja/breeds?limit=10');
+curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+
+$phonelist = curl_exec($cURLConnection);
+curl_close($cURLconnection);
+
+$jsonArrayResponse = json_decode($phonelist);
+
+//VART ÄR KOPPLINGEN TILL GET????
+
+
+// här kmr execution of code
+curl_setopt($ch, CURLOPT_HTTPHEADER, array (
+    'Header-key: Header-value',
+    'Header-key-2: Header-value-2'
+));
+
+?>
+
+
+<?php
+
+//ändra så koden blir DIN!!! samt lär dig de olika arraysen
+
+if (isset($_GET['breed'])) {
+
+    $ch = curl_init();
+
+    $url = "https://catfact.ninja/breeds?limit=1";
+    
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $resp = curl_exec($ch);
+
+    if($e = curl_error($ch)) {
+        echo $e;
+    }
+
+    else {
+        $decoded = json_decode($resp);
+        print_r($decoded);
+        
+    }
+
+}
+
+?>
+
+
+<!--- NÄSTA KOD --->
+
+
+
+<?php
+
+//denna är isf i en curlget.php
+
+if (isset($_GET['catfact'])) {
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+	CURLOPT_URL => "https://catfact.ninja/fact",
+	CURLOPT_RETURNTRANSFER => true,
+	CURLOPT_FOLLOWLOCATION => true,
+	CURLOPT_ENCODING => "",
+	CURLOPT_MAXREDIRS => 10,
+	CURLOPT_TIMEOUT => 30,
+	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	CURLOPT_CUSTOMREQUEST => "GET",
+	CURLOPT_HTTPHEADER => [
+		"x-rapidapi-host: community-open-weather-map.p.rapidapi.com",
+		"x-rapidapi-key: 26db325f99msh4de8923d94d55afp12e057jsn02ffc24b7b21"
+	],
+]);
+
+$response = curl_exec($curl);
+$error = curl_error($curl);
+
+curl_close($curl);
+
+if ($error) {
+	echo "cURL Error #:" . $error;
+} else {
+	echo $response;
+}
+}
+
+?>
+
+
+<!-- gammal curl kod -->
+
+<?php
+
+if (isset($_GET['catfact'])) {
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+	CURLOPT_URL => "https://catfact.ninja/fact",
+	CURLOPT_RETURNTRANSFER => true,
+	CURLOPT_FOLLOWLOCATION => true,
+	CURLOPT_ENCODING => "",
+	CURLOPT_MAXREDIRS => 10,
+	CURLOPT_TIMEOUT => 30,
+	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	CURLOPT_CUSTOMREQUEST => "GET",
+	CURLOPT_HTTPHEADER => [
+		"x-rapidapi-host: community-open-weather-map.p.rapidapi.com",
+		"x-rapidapi-key: 26db325f99msh4de8923d94d55afp12e057jsn02ffc24b7b21"
+	],
+]);
+
+$response = curl_exec($curl);
+$error = curl_error($curl);
+
+curl_close($curl);
+
+if ($error) {
+	echo "cURL Error #:" . $error;
+} else {
+	echo $response;
+}
+}
+
+?>

@@ -1,4 +1,6 @@
 
+<!-- använd denna för att göra bildgrejen i labb 5: https://www.youtube.com/watch?v=1X2-UEUqrd8 -->
+
 <?php 
 include('config.php');
 ?>

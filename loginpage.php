@@ -67,6 +67,7 @@ if(isset($_POST['submit'])) {
                 $_SESSION['password'] = $row["userpw"]; 
                 $_SESSION['usertype'] = $row["usertype"]; //sets usertype for session
                 $_SESSION['loginstatus'] = true; //user is logged in and visible in nav
+                // add ip for session hijacking
 
                 //här är det inte fel
               if ($row['usertype'] == '1') {
@@ -100,8 +101,6 @@ if(isset($_POST['submit'])) {
       
 
             
-            <div class="t-big2">
-            </div>
         </div>
     </div>
 

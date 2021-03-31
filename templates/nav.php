@@ -6,11 +6,9 @@
         <a href="browse.php" class= "<?php echo($currentPage == 'browse.php') ? 'active' : ''?> ">Browse books</a>
         <a href="mybooks.php" class= "<?php echo($currentPage == 'mybooks.php') ? 'active' : ''?> ">My books</a>
         <a href="gallery.php" class= "<?php echo($currentPage == 'gallery.php') ? 'active' : ''?> ">Gallery</a>
-        <a href="loginpage.php" class= "<?php echo($currentPage == 'loginpage.php') ? 'active' : ''?> ">Login</a>
-    </ul>
 
 
-    <?php if (isset($_SESSION['loginstatus'])) {
+        <?php if (isset($_SESSION['loginstatus'])) {
 		if($_SESSION['usertype'] == '1'){
 			?><a class="<?php echo ($current_page == 'admin.php') ? 'active' : NULL ?>"href="admin.php">Admin</a><?php
 		} else if($_SESSION['usertype'] == '2'){
@@ -18,4 +16,15 @@
 		}
 	}
     ?>
+
+        <?php if (isset($_SESSION['loginstatus'])) {
+            ?><a class="<?php echo ($current_page == 'logout.php') ? 'active' : NULL ?>"href="logout.php">Log out!</a><?php
+
+		} else {
+            ?><a class="<?php echo ($current_page == 'loginpage.php') ? 'active' : NULL ?>"href="loginpage.php">Log in?</a><?php
+		}
+	
+    ?>
+
+        </ul>
 </nav>
