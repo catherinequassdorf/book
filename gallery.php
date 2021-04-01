@@ -17,7 +17,14 @@ include('config.php');
 
     <div class="c-container">
 
+
+    <form method="POST" action="">
+    <input type="submit" value="Upload random picture!" name="img" />
+    </br>
+    </br>
+
     <?php
+    //uploaded image
         $db = mysqli_connect('localhost', 'root', 'root', 'db_books') or die('Error connecting');
        
         $query ="SELECT * FROM upload";
@@ -26,20 +33,35 @@ include('config.php');
         $stmt->execute();
 
         while ($stmt->fetch()) {
-            echo '<img width=250px src=uploads/' .$image . '>';
+            echo '<img height=300px src=uploads/' .$image . '>';
         }
 
-       ?>      
+       ?>    
+
+<?php
+
+if (isset($_POST['img'])) {
+
+    $fileNameNew = uniqid('', true).".jpg"; //lägger bild i lokal mapp med .jpg i filnamn
+    //lägger bild lokalt på datorn
+    copy('https://picsum.photos/200/300', ($fileDestination = 'uploads/' .$fileNameNew));
+
+          $query = "INSERT INTO upload(image) VALUES('$fileNameNew')"; //this part uploads the picture to database
+          $res = mysqli_query ($db, $query);
+          if($res) {
+             move_uploaded_file($fileTmpName, $fileDestination);
+
+             //header("location:gallery.php"); 
+          }
+ }
+?>
+    
+  
+
+
        
        </div>
 
 </body>
-
-
-
-
-<footer>
-    <?php include('templates/footer.php');?>
-</footer>
 
 </html>
