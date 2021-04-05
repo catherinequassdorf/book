@@ -635,3 +635,35 @@ curl_close($curl);
 }
 
 ?>
+
+
+<!-- nästa kod -->
+
+
+<?php
+
+    //request
+    $url = "https://picsum.photos/v2/list";
+    
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_URL, $url);
+   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $headers = array(
+       "Content-Type: image/jpeg;",
+    );
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+    //above GETS data that already exists
+    
+    //response
+    $resp = curl_exec($curl);
+    $result = json_decode($resp, true);
+
+        foreach($result as $post){
+          echo '<img height=100px src= "'. $post["download_url"] .'"/>';
+
+     
+        }
+    
+
+    ?>
+

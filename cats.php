@@ -40,7 +40,7 @@ if (isset($_GET['breed'])) {
     $resp = curl_exec($curl);
     $result = json_decode($resp, true);
 
-    //echo '<pre>'; print_r($result); echo '</pre>';
+    echo '<pre>'; print_r($result); echo '</pre>';
     curl_close($curl); 
     }
     ?>
